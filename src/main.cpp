@@ -175,9 +175,11 @@ int main(int argc, char* argv[])
     for (unsigned int i = 0; i < 1e5; i++) {
         LOG(INFO) << "Logging";
     }
-    LOG(INFO) << "100,000 log messages WITH THREAD JOIN took AND thread_fun USLEEP took: " << timer.elapsed() << " nanoseconds";
-    
-    LOG(INFO) << "Average " << (timer.elapsed() / 1e5) << "ns";
+    auto elapsed = timer.elapsed();
+    auto average = elapsed / 1e5;
+
+    LOG(INFO) << 1e5 << " log messages took  took: " << elapsed << " nanoseconds";
+    LOG(INFO) << "Average " << average << "ns";
 
     timer.reset();
     auto delta =  timer.elapsed();
